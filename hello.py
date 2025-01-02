@@ -1,6 +1,14 @@
 from flask import Flask, render_template
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = "huush its a secret"
+
+class naming(FlaskForm):
+    name = StringField("whats your name", validators=[DataRequired()])
+    submit = SubmitField("Submit")
 
 @app.route("/")
 
