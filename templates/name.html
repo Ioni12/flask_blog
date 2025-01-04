@@ -1,29 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    {% extends 'base.html'%} {% block content %}
-    <h1>Hello world</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, illo
-      quas? Facilis dicta harum, quibusdam voluptatem iure earum quidem suscipit
-      ipsa facere consectetur, doloribus accusantium. Sapiente totam tempore
-      iste ratione! Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-      Mollitia, officiis eius exercitationem illum nesciunt ad voluptatem
-      pariatur reprehenderit odio voluptate rem quis, laudantium consequuntur
-      accusamus nam eligendi dolorum id ea.
-    </p>
+{% extends 'base.html'%} {% block content %} {% for message in
+get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible show" role="alert">
+  {{message}}
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<br />
+{% endfor %} {% if name %}
+<h1 style="margin-top: 4vh">hello {{name}}</h1>
+<br />
 
-    <h1>my name is {{ first_name }}</h1>
-    <p>{{ stuff|safe}}</p>
-    {% for i in more_stuff%} <br />
-    {% if i == 34 %} {{ " thats what i am talking about "}} {% endif %} {{i}}
-    <br />
-    {% endfor %} <br />
-    {{more_stuff.0}} {% endblock %}
-  </body>
-</html>
+{% else %}
+<center>
+  <form method="POST">
+    {{ form.hidden_tag() }} {{ form.name.label(class="form-label mt-4 fs-1") }}
+    <br />{{ form.name(class="input-group-text") }} {{ form.submit(class="btn
+    btn-secondary mt-4") }}
+  </form>
+</center>
+
+{% endif %} {% endblock %}
