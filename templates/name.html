@@ -13,7 +13,13 @@ get_flashed_messages() %}
 {% endfor %} {% if name %}
 <h1 style="margin-top: 4vh">hello {{name}}</h1>
 <br />
-
+<img
+  src="{{url_for('static', filename='images/image.jpg')}}"
+  style="height: 480px; width: 380px"
+/>
+<br />
+<p id="demo"></p>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% else %}
 <center>
   <form method="POST">
